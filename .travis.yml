@@ -1,0 +1,21 @@
+language: ruby
+before_install: gem install bundler
+
+rvm:
+  - 2.3.0
+  - 2.2
+  - 2.1
+  - 2.0
+  - jruby-head
+  - rbx-2
+  
+gemfile:
+  - Gemfile
+
+notifications:
+  email: false
+
+addons:
+  code_climate:
+    repo_token:
+      secure: "1a6ae0e7db7aaab5f54e634a64bf9278084fca24f3558871356b559b724ce8bf"
