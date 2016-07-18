@@ -5,16 +5,16 @@ module OmniAuth
     class Discord < OmniAuth::Strategies::OAuth2
       DEFAULT_SCOPE = 'email'
       
-      option :name, "discord"
-
+      option :name, 'discord'
+      
       option :client_options, {
-        :site          => 'https://discordapp.com/api/oauth2/',
-        :authorize_url => 'https://discordapp.com/api/oauth2/authorize',
-        :token_url     => 'https://discordapp.com/api/oauth2/token'
+        :site          => 'https://discordapp.com/api',
+        :authorize_url => 'oauth2/authorize',
+        :token_url     => 'oauth2/token'
       }
       
       option :authorize_options, [:scope]
-
+      
       uid { raw_info['id'] }
 
       info do
@@ -35,12 +35,21 @@ module OmniAuth
       end
 
       def raw_info
-        @raw_info ||= access_token.get('/users/@me').parsed
+        @raw_info = access_token.get('users/@me').parsed
+      end
+      
+      def callback_url
+        # Discord does not support query parameters
+        full_host + script_name + callback_path
       end
       
       def authorize_params
         super.tap do |params|
-          params[:scope] = request.params['scope']
+          options[:authorize_options].each do |option|
+            params[option] = request.params[option.to_s]
+          end
+          
+          params[:redirect_uri] = options[:redirect_uri] unless options[:redirect_uri].nil?
           params[:scope] ||= DEFAULT_SCOPE
         end
       end
