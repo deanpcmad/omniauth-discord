@@ -45,7 +45,7 @@ module OmniAuth
       def authorize_params
         super.tap do |params|
           options[:authorize_options].each do |option|
-            params[option] = request.params[option.to_s]
+            params[option] = request.params[option.to_s] if request.params[option.to_s]
           end
 
           params[:redirect_uri] = options[:redirect_uri] unless options[:redirect_uri].nil?
