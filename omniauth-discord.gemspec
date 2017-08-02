@@ -20,7 +20,6 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency 'omniauth-oauth2', '~> 1.4'
 
-  spec.add_development_dependency "codeclimate-test-reporter"
   spec.add_development_dependency "dotenv"
   spec.add_development_dependency "bundler"
   spec.add_development_dependency "rake"

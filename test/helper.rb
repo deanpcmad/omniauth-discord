@@ -1,4 +1,3 @@
-require 'codeclimate-test-reporter'
 require 'bundler/setup'
 require 'dotenv'
 require 'minitest/autorun'
@@ -7,8 +6,6 @@ require 'omniauth-discord'
 
 # Loading Environment Variables
 Dotenv.load
-
-CodeClimate::TestReporter.start
 
 OmniAuth.config.test_mode = true
 
