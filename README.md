@@ -1,4 +1,4 @@
-# OmniAuth Discord 
+# OmniAuth Discord
 
 Discord OAuth2 Strategy for OmniAuth.
 
@@ -23,6 +23,15 @@ Here's a quick example, adding the middleware to a Rails app in `config/initiali
 ```ruby
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :discord, ENV['DISCORD_APPID'], ENV['DISCORD_SECRET']
+end
+```
+
+By default, Discord does not return a user's email address. Set the scope to
+`email` to get it:
+
+```ruby
+Rails.application.config.middleware.use OmniAuth::Builder do
+  provider :discord, ENV['DISCORD_APPID'], ENV['DISCORD_SECRET'], scope: 'email'
 end
 ```
 
