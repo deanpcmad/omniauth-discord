@@ -19,11 +19,9 @@ module OmniAuth
 
       info do
         {
-          :id            => raw_info['id'],
-          :username      => raw_info['username'],
-          :discriminator => raw_info['discriminator'],
-          :avatar        => raw_info['avatar'],
-          :verified      => raw_info['verified']
+          :name  => raw_info['username'],
+          :email => raw_info['email'],
+          :image => "https://cdn.discordapp.com/avatars/#{raw_info['id']}/#{raw_info['avatar']}"
         }
       end
 
@@ -34,7 +32,7 @@ module OmniAuth
       end
 
       def raw_info
-        @raw_info = access_token.get('users/@me').parsed
+        @raw_info ||= access_token.get('users/@me').parsed
       end
 
       def callback_url
