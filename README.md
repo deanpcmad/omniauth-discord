@@ -22,7 +22,7 @@ Here's a quick example, adding the middleware to a Rails app in `config/initiali
 
 ```ruby
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :discord, ENV['DISCORD_APPID'], ENV['DISCORD_SECRET']
+  provider :discord, ENV['DISCORD_CLIENT_ID'], ENV['DISCORD_CLIENT_SECRET']
 end
 ```
 
@@ -33,7 +33,7 @@ email set the scope to `email`.
 
 ```ruby
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :discord, ENV['DISCORD_APPID'], ENV['DISCORD_SECRET'], scope: 'email'
+  provider :discord, ENV['DISCORD_CLIENT_ID'], ENV['DISCORD_CLIENT_SECRET'], scope: 'email'
 end
 ```
 
@@ -43,7 +43,7 @@ Discord account info set the scope to `email identify`
 
 ```ruby
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :discord, ENV['DISCORD_APPID'], ENV['DISCORD_SECRET'], scope: 'email
+  provider :discord, ENV['DISCORD_CLIENT_ID'], ENV['DISCORD_CLIENT_SECRET'], scope: 'email
 identify'
 end
 ```
