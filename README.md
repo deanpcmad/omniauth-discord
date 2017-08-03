@@ -43,8 +43,7 @@ Discord account info set the scope to `email identify`
 
 ```ruby
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :discord, ENV['DISCORD_CLIENT_ID'], ENV['DISCORD_CLIENT_SECRET'], scope: 'email
-identify'
+  provider :discord, ENV['DISCORD_CLIENT_ID'], ENV['DISCORD_CLIENT_SECRET'], scope: 'email identify'
 end
 ```
 
