@@ -26,12 +26,25 @@ Rails.application.config.middleware.use OmniAuth::Builder do
 end
 ```
 
-By default, Discord does not return a user's email address. Set the scope to
-`email` to get it:
+By default, Discord does not return a user's email address. Their API uses
+[scopes](https://discordapp.com/developers/docs/topics/oauth2#scopes) to provide
+access to certain resources of a user's account. For example, to get a user's
+email set the scope to `email`.
 
 ```ruby
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :discord, ENV['DISCORD_APPID'], ENV['DISCORD_SECRET'], scope: 'email'
+end
+```
+
+You can pass multiple scopes in the same string. For example to get a user's
+Discord account info set the scope to `email identify`
+
+
+```ruby
+Rails.application.config.middleware.use OmniAuth::Builder do
+  provider :discord, ENV['DISCORD_APPID'], ENV['DISCORD_SECRET'], scope: 'email
+identify'
 end
 ```
 
