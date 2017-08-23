@@ -47,7 +47,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
 end
 ```
 
-## Specifying addtional permissions
+## Specifying additional permissions
 
 You can also request additional permissions from the user. See the
 [permission help page](https://discordapp.com/developers/docs/topics/permissions#bitwise-permission-flags) for a list of all available options.
