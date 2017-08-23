@@ -47,6 +47,20 @@ Rails.application.config.middleware.use OmniAuth::Builder do
 end
 ```
 
+## Specifying addtional permissions
+
+You can also request additional permissions from the user. See the
+[permission help page](https://discordapp.com/developers/docs/topics/permissions#bitwise-permission-flags) for a list of all available options.
+
+```ruby
+Rails.application.config.middleware.use OmniAuth::Builder do
+  provider :discord, ENV['DISCORD_CLIENT_ID'], ENV['DISCORD_CLIENT_SECRET'], scope: 'identify  bot', permissions: 0x00000010 + 0x10000000
+end
+```
+
+This will request permission to the MANAGE_CHANNELS and the MANAGE_ROLES
+permissions.
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/adaoraul/omniauth-discord.
