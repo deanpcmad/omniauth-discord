@@ -20,7 +20,7 @@ module OmniAuth
       info do
         {
           :name  => raw_info['username'],
-          :email => raw_info['email'],
+	  :email => raw_info['verified'] ? raw_info['email'] : nil,
           :image => "https://cdn.discordapp.com/avatars/#{raw_info['id']}/#{raw_info['avatar']}"
         }
       end
