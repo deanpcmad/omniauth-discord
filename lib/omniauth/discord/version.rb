@@ -1,5 +1,5 @@
 module Omniauth
   module Discord
-    VERSION = '0.1.8'.freeze
+    VERSION = '1.0.0'.freeze
   end
 end
