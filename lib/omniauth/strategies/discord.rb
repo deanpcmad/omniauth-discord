@@ -3,25 +3,24 @@ require 'omniauth-oauth2'
 module OmniAuth
   module Strategies
     class Discord < OmniAuth::Strategies::OAuth2
-      DEFAULT_SCOPE = 'identify'
+      DEFAULT_SCOPE = 'identify'.freeze
 
       option :name, 'discord'
 
-      option :client_options, {
-        :site          => 'https://discordapp.com/api',
-        :authorize_url => 'oauth2/authorize',
-        :token_url     => 'oauth2/token'
-      }
+      option :client_options,
+             site: 'https://discordapp.com/api',
+             authorize_url: 'oauth2/authorize',
+             token_url: 'oauth2/token'
 
-      option :authorize_options, [:scope, :permissions]
+      option :authorize_options, %i[scope permissions]
 
       uid { raw_info['id'] }
 
       info do
         {
-          :name  => raw_info['username'],
-	  :email => raw_info['verified'] ? raw_info['email'] : nil,
-          :image => "https://cdn.discordapp.com/avatars/#{raw_info['id']}/#{raw_info['avatar']}"
+          name: raw_info['username'],
+          email: raw_info['verified'] ? raw_info['email'] : nil,
+          image: "https://cdn.discordapp.com/avatars/#{raw_info['id']}/#{raw_info['avatar']}"
         }
       end
 
@@ -46,7 +45,6 @@ module OmniAuth
             params[option] = request.params[option.to_s] if request.params[option.to_s]
           end
 
-          params[:redirect_uri] = options[:redirect_uri] unless options[:redirect_uri].nil?
           params[:scope] ||= DEFAULT_SCOPE
         end
       end
