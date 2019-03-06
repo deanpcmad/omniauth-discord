@@ -1,17 +1,28 @@
+env:
+  global:
+    - CC_TEST_REPORTER_ID=ABC123
+
 language: ruby
 before_install: gem install bundler
 
 rvm:
+  - 2.6.1
   - 2.3.0
-  - 2.2
-  - 2.1
-  - 2.0
   - jruby-head
-  - rbx-2
-  
+
 gemfile:
   - Gemfile
 
 notifications:
-  email: false
+  email: true
 
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+
+script:
+  - bundle exec rspec
+
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
