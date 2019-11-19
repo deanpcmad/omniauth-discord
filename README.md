@@ -47,6 +47,15 @@ Rails.application.config.middleware.use OmniAuth::Builder do
 end
 ```
 
+You can specify redirect url
+
+
+```ruby
+Rails.application.config.middleware.use OmniAuth::Builder do
+  provider :discord, ENV['DISCORD_CLIENT_ID'], ENV['DISCORD_CLIENT_SECRET'], scope: 'email identify', redirect_uri: 'https://some_url.com/users/auth/discord/callback'
+end
+```
+
 ## Specifying additional permissions
 
 You can also request additional permissions from the user. See the
