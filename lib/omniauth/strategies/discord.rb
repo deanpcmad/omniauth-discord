@@ -12,7 +12,7 @@ module OmniAuth
              authorize_url: 'oauth2/authorize',
              token_url: 'oauth2/token'
 
-      option :authorize_options, %i[scope permissions]
+      option :authorize_options, %i[scope permissions redirect_uri]
 
       uid { raw_info['id'] }
 
@@ -46,6 +46,7 @@ module OmniAuth
           end
 
           params[:scope] ||= DEFAULT_SCOPE
+          params[:redirect_uri] = options[:redirect_uri] if options[:redirect_uri].present?
         end
       end
     end
