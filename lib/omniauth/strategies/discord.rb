@@ -36,7 +36,7 @@ module OmniAuth
 
       def callback_url
         # Discord does not support query parameters
-        full_host + script_name + callback_path
+        options[:callback_url] || (full_host + script_name + callback_path)
       end
 
       def authorize_params
