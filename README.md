@@ -70,6 +70,10 @@ end
 This will request permission to the MANAGE_CHANNELS and the MANAGE_ROLES
 permissions.
 
+## Specifying the prompt options
+
+Discord looks for the prompt option to indicate if the user should be prompted to reauthorize on sign in. Valid options are 'consent' and 'none'. Note that the use is always prompted to authorize on sign up.
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/adaoraul/omniauth-discord.
