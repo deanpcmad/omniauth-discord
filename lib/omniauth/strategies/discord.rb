@@ -27,12 +27,18 @@ module OmniAuth
 
       extra do
         {
-          'raw_info' => raw_info
+          raw_info: raw_info,
+          web_hook_info: web_hook_info
         }
       end
 
       def raw_info
         @raw_info ||= access_token.get('users/@me').parsed
+      end
+
+      def web_hook_info
+        return {} unless access_token.params.key? 'webhook'
+        access_token.params['webhook']
       end
 
       def callback_url
