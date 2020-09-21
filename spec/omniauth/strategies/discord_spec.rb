@@ -27,7 +27,7 @@ describe OmniAuth::Strategies::Discord do
 
   context 'client options' do
     it 'should have correct site' do
-      expect(subject.options.client_options.site).to eq('https://discordapp.com/api')
+      expect(subject.options.client_options.site).to eq('https://discord.com/api')
     end
 
     it 'should have correct authorize url' do
