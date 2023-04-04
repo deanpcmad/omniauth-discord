@@ -1,24 +1,22 @@
 # OmniAuth Discord
 
-Discord OAuth2 Strategy for OmniAuth.
+OmniAuth Discord - OAuth2 Strategy for OmniAuth
 
-Read the Discord API documentation for more details: https://discordapp.com/developers/docs/topics/oauth2
+OmniAuth Discord is an OAuth2 strategy for OmniAuth that allows you to authenticate users using Discord. If you're not familiar with Discord's OAuth2, we recommend you check out the Discord API documentation for more details.
 
-## Installing
+## Installation
 
-Add to your `Gemfile`:
+To install OmniAuth Discord, simply add the following line to your Gemfile:
 
 ```ruby
 gem 'omniauth-discord'
 ```
 
-Then `bundle install`.
+Then run bundle install to install the gem.
 
 ## Usage
 
-`OmniAuth::Strategies::Discord` is simply a Rack middleware. Read the OmniAuth docs for detailed instructions: https://github.com/intridea/omniauth.
-
-Here's a quick example, adding the middleware to a Rails app in `config/initializers/omniauth.rb`:
+OmniAuth Discord is a Rack middleware. If you're not familiar with OmniAuth, we recommend reading the documentation for detailed instructions. Here's an example of how to add the middleware to a Rails app in config/initializers/omniauth.rb:
 
 ```ruby
 Rails.application.config.middleware.use OmniAuth::Builder do
@@ -26,10 +24,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
 end
 ```
 
-By default, Discord does not return a user's email address. Their API uses
-[scopes](https://discordapp.com/developers/docs/topics/oauth2#scopes) to provide
-access to certain resources of a user's account. For example, to get a user's
-email set the scope to `email`.
+By default, Discord does not return a user's email address. You can request access to additional resources by setting scopes. For example, to get a user's email, you would set the scope to 'email'.
 
 ```ruby
 Rails.application.config.middleware.use OmniAuth::Builder do
@@ -37,8 +32,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
 end
 ```
 
-You can pass multiple scopes in the same string. For example to get a user's
-Discord account info set the scope to `email identify`
+You can pass multiple scopes in the same string. For example, to get a user's Discord account info, you would set the scope to 'email identify'.
 
 
 ```ruby
@@ -47,7 +41,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
 end
 ```
 
-You can set callback url
+You can also specify a callback URL by adding callback_url to the provider options.
 
 
 ```ruby
@@ -56,10 +50,9 @@ Rails.application.config.middleware.use OmniAuth::Builder do
 end
 ```
 
-## Specifying additional permissions
+## Additional Permissions
 
-You can also request additional permissions from the user. See the
-[permission help page](https://discordapp.com/developers/docs/topics/permissions#bitwise-permission-flags) for a list of all available options.
+You can request additional permissions from the user by setting the permissions option. For example, to request permission to the MANAGE_CHANNELS and MANAGE_ROLES permissions, you would set permissions to 0x00000010 + 0x10000000.
 
 ```ruby
 Rails.application.config.middleware.use OmniAuth::Builder do
@@ -70,15 +63,15 @@ end
 This will request permission to the MANAGE_CHANNELS and the MANAGE_ROLES
 permissions.
 
-## Specifying the prompt options
+## Prompt Options
 
-Discord looks for the prompt option to indicate if the user should be prompted to reauthorize on sign in. Valid options are 'consent' and 'none'. Note that the use is always prompted to authorize on sign up.
+You can specify the prompt options by setting the prompt option. The prompt option indicates whether the user should be prompted to reauthorize on sign in. Valid options are 'consent' and 'none'. Note that the user is always prompted to authorize on sign up.
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/adaoraul/omniauth-discord.
+If you find a bug or want to contribute to the project, we welcome bug reports and pull requests on GitHub.
 
 
 ## License
 
-The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+OmniAuth Discord is available as open-source software under the [MIT License](http://opensource.org/licenses/MIT).
