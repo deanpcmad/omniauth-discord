@@ -20,15 +20,13 @@ module OmniAuth
         {
           name: raw_info['username'],
           email: raw_info['verified'] ? raw_info['email'] : nil,
-          # CDN is still cdn.discordapp.com
-          image: raw_info['avatar'].present? ? "https://cdn.discordapp.com/avatars/#{raw_info['id']}/#{raw_info['avatar']}" : nil,
+          image: raw_info['avatar'] ? "https://cdn.discordapp.com/avatars/#{raw_info['id']}/#{raw_info['avatar']}" : nil,
         }
       end
 
       extra do
         {
-          raw_info: raw_info,
-          web_hook_info: web_hook_info
+          raw_info: raw_info
         }
       end
 
@@ -36,14 +34,9 @@ module OmniAuth
         @raw_info ||= access_token.get('users/@me').parsed
       end
 
-      def web_hook_info
-        return {} unless access_token.params.key? 'webhook'
-        access_token.params['webhook']
-      end
-
       def callback_url
         # Discord does not support query parameters
-        options[:callback_url] || (full_host + script_name + callback_path)
+        options[:redirect_uri] || (full_host + script_name + callback_path)
       end
 
       def authorize_params
