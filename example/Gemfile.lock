@@ -2,8 +2,7 @@ PATH
   remote: ..
   specs:
     omniauth-discord (1.1.0)
-      omniauth (~> 2.1.0)
-      omniauth-oauth2
+      omniauth-oauth2 (~> 1.6)
 
 GEM
   remote: https://rubygems.org/
@@ -40,7 +39,7 @@ GEM
       method_source (~> 1.0)
     puma (6.2.1)
       nio4r (~> 2.0)
-    rack (2.2.6.4)
+    rack (2.2.8.1)
     rack-protection (3.0.5)
       rack
     ruby2_keywords (0.0.5)
