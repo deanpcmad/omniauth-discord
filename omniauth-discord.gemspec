@@ -4,12 +4,12 @@ require 'omniauth/discord/version'
 Gem::Specification.new do |spec|
   spec.name          = 'omniauth-discord'
   spec.version       = Omniauth::Discord::VERSION
-  spec.authors       = ['Adão Raul']
-  spec.email         = ['adao.raul@gmail.com']
+  spec.authors       = ["Dean Perry", 'Adão Raul']
+  spec.email         = ["dean@deanpcmad.com", 'adao.raul@gmail.com']
 
   spec.summary       = 'Discord OAuth2 Strategy for OmniAuth'
   spec.description   = spec.summary
-  spec.homepage      = 'http://github.com/adaoraul/omniauth-discord'
+  spec.homepage      = 'https://github.com/deanpcmad/omniauth-discord'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(spec)/}) }
@@ -17,12 +17,5 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ['lib']
 
-  spec.add_runtime_dependency 'omniauth', '~> 2.1.0'
-  spec.add_runtime_dependency 'omniauth-oauth2'
-
-  spec.add_development_dependency 'rack-test'
-  spec.add_development_dependency 'rake'
-  spec.add_development_dependency 'rspec'
-  spec.add_development_dependency 'simplecov'
-  spec.add_development_dependency 'webmock'
+  spec.add_runtime_dependency 'omniauth-oauth2', '~> 1.6'
 end
